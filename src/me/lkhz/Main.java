@@ -9,7 +9,7 @@ public class Main {
         ThreadPool threadPool = ThreadPool.getInstance();
         CouponDAO couponDAO = new CouponDAO();
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 10000; i++){
             if(i%2 == 0){
                 threadPool.add(couponDAO::getCoupon);
                 //threadPool.add(() -> couponDAO.getCoupon());

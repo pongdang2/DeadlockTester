@@ -27,12 +27,12 @@ public class CouponDAO {
                                     "WHERE ID = 1                               \n" +
                                     "  AND REMAIN_COUNT > 0                       ";
 
-                    int cnt = stmt.executeUpdate(querry);
+                    stmt.executeUpdate(querry);
                 } catch (SQLException e){
                     e.printStackTrace();
                     conn.rollback();
                 }
-                Thread.sleep(10000);
+                //Thread.sleep(10000);
 
 
                 try(Statement stmt = conn.createStatement()){
@@ -40,13 +40,13 @@ public class CouponDAO {
                                     "SET issued_coupon_count = issued_coupon_count + 1        \n" +
                                     "WHERE ID = 1                               \n";
 
-                    int cnt = stmt.executeUpdate(querry);
+                    stmt.executeUpdate(querry);
                 } catch (SQLException e){
                     e.printStackTrace();
                     conn.rollback();
                 }
                 conn.commit();
-            } catch (SQLException | InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 conn.rollback();
             }
@@ -79,7 +79,7 @@ public class CouponDAO {
                     e.printStackTrace();
                     conn.rollback();
                 }
-                Thread.sleep(10000);
+                //Thread.sleep(10000);
 
 
                 try(Statement stmt = conn.createStatement()){
@@ -93,7 +93,7 @@ public class CouponDAO {
                     conn.rollback();
                 }
                 conn.commit();
-            } catch (SQLException | InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 conn.rollback();
             }
