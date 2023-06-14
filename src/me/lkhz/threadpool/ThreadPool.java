@@ -42,6 +42,7 @@ public class ThreadPool {
             Thread curThread = new Thread(runnable);
             threadPool.add(curThread);
             curThread.start();
+            System.out.println(curThread.getName() + "Start");
             return true;
         }
         return false;
