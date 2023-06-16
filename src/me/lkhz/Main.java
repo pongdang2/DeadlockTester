@@ -9,7 +9,8 @@ public class Main {
         ThreadPool threadPool = ThreadPool.getInstance();
         CouponDAO couponDAO = new CouponDAO();
 
-        for(int i = 0; i < 10000; i++){
+        long startTime = System.currentTimeMillis();
+        for(int i = 0; i < 100; i++){
             if(i%2 == 0){
                 threadPool.add(couponDAO::getCoupon);
                 //threadPool.add(() -> couponDAO.getCoupon());
@@ -25,6 +26,13 @@ public class Main {
                 threadPool.add(couponDAO::cancleCoupon);
             }
         }
+
+        while(true){
+            if(threadPool.isEmpty())
+                break;
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("프로그램 실행 시간: " + (endTime - startTime)/1000.0 + "초");
 
     }
 }

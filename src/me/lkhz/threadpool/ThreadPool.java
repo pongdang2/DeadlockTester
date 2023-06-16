@@ -66,4 +66,8 @@ public class ThreadPool {
     public void clean(){
         this.threadPool = new ArrayList<>();
     }
+
+    public boolean isEmpty(){
+        return threadPool.size() == 0;
+    }
 }
