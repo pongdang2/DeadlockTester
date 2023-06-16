@@ -1,13 +1,20 @@
 package me.lkhz;
 
 import me.lkhz.dao.CouponDAO;
+import me.lkhz.dao.CouponDAO_01;
+import me.lkhz.dao.CouponDAO_02;
 import me.lkhz.threadpool.ThreadPool;
 
 public class Main {
 
     public static void main(String[] args) {
         ThreadPool threadPool = ThreadPool.getInstance();
-        CouponDAO couponDAO = new CouponDAO();
+        CouponDAO couponDAO;
+        // 1. DeadLock 발생
+        //couponDAO = new CouponDAO_01();
+
+        // 2. 접근하는 테이블 순서를 같게 변경
+        couponDAO = new CouponDAO_02();
 
         long startTime = System.currentTimeMillis();
         for(int i = 0; i < 100; i++){

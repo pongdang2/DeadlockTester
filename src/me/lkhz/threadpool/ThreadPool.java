@@ -8,11 +8,13 @@ public class ThreadPool {
     private static ThreadPool instance;
     private int capacity;
     private List<Thread> threadPool;
+    private boolean isEnd;
 
 
     private ThreadPool() {
         this.capacity = 100;
         this.threadPool = new ArrayList<>();
+        this.isEnd = false;
     }
 
     public static ThreadPool getInstance() {
@@ -68,6 +70,7 @@ public class ThreadPool {
     }
 
     public boolean isEmpty(){
+        threadPool.removeIf(thread -> thread.getState() == Thread.State.TERMINATED);
         return threadPool.size() == 0;
     }
 }
