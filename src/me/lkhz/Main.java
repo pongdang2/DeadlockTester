@@ -11,27 +11,22 @@ public class Main {
         ThreadPool threadPool = ThreadPool.getInstance();
         CouponDAO couponDAO;
         // 1. DeadLock 발생
-        //couponDAO = new CouponDAO_01();
+        couponDAO = new CouponDAO_01();
 
         // 2. 접근하는 테이블 순서를 같게 변경
-        couponDAO = new CouponDAO_02();
+        //couponDAO = new CouponDAO_02();
 
+        CouponDAO_01 couponDAO2 = new CouponDAO_01();
         long startTime = System.currentTimeMillis();
         for(int i = 0; i < 100; i++){
+            /*
             if(i%2 == 0){
                 threadPool.add(couponDAO::getCoupon);
-                //threadPool.add(() -> couponDAO.getCoupon());
-            /*
-            threadPool.add(new Runnable() {
-                @Override
-                public void run() {
-                    couponDAO.getCoupon();
-                }
-            });
-             */
             } else {
                 threadPool.add(couponDAO::cancleCoupon);
             }
+             */
+            couponDAO2.insertCoupon();
         }
 
         while(true){
@@ -40,6 +35,5 @@ public class Main {
         }
         long endTime = System.currentTimeMillis();
         System.out.println("프로그램 실행 시간: " + (endTime - startTime)/1000.0 + "초");
-
     }
 }

@@ -104,4 +104,30 @@ public class CouponDAO_01 implements CouponDAO{
         }
         System.out.println("### CouponDAO.cancleCoupon End");
     }
+
+
+    public void insertCoupon() {
+        System.out.println("### CouponDAO.insertCoupon Start");
+        try {
+            Connection conn = DriverManager.getConnection(URL, USER_ID, USER_PW);
+            conn.setAutoCommit(false);
+            try (conn) {
+                try(Statement stmt = conn.createStatement()){
+                    String querry = "INSERT INTO COUPON  VALUES(2, 1000)                                  \n";
+
+                    stmt.executeUpdate(querry);
+                } catch (SQLException e){
+                    e.printStackTrace();
+                    conn.rollback();
+                }
+                conn.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                conn.rollback();
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        System.out.println("### CouponDAO.insertCoupon End");
+    }
 }
