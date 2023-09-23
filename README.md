@@ -2,7 +2,9 @@
 
 <hr>
 
-## 1. DB
+## 1. 설명
+
+### DB 
 
 #### MySQL DB 사용
 
@@ -37,6 +39,22 @@ create table coupon_history(
 ```
 <hr>
 
+### ThreadPool
+
+`me.lkhz.threadpool.ThreadPool` <br>
+트랜잭션을 대량으로 일으키기 위해 Singleton 패턴을 활용해 ThreadPool을 간단하게 구현했습니다.
+
+### CouponDAO_01
+실행했을 때, DeadLock이 발생하는 클래스입니다.
+Main메서드의 couponDAO를 CouponDAO_01의 인스턴스로 초기화하면 DeadLock이 발생합니다.
+
+### CouponDAO_02
+실행했을 때, DeadLock이 발생하지 않는 클래스입니다.
+Main메서드의 couponDAO를 CouponDAO_02의 인스턴스로 초기화하면 DeadLock이 발생하지 않습니다.
+
+<br>
+
+<hr>
 
 ## 2. DeadLock 일으키기
 #### 1) 쿠폰 발행 메서드
