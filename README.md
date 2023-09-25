@@ -1,4 +1,4 @@
-# DeadlockTester
+# deadlock-sample
 
 <hr>
 
